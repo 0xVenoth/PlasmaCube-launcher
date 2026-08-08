@@ -85,7 +85,12 @@ public class LauncherPreferences {
         PREF_CHECK_LIBRARY_SHA = DEFAULT_PREF.getBoolean("checkLibraries",true);
         PREF_DISABLE_GESTURES = DEFAULT_PREF.getBoolean("disableGestures",false);
         PREF_DISABLE_SWAP_HAND = DEFAULT_PREF.getBoolean("disableDoubleTap", false);
-        PREF_RAM_ALLOCATION = DEFAULT_PREF.getInt("allocation", findBestRAMAllocation(ctx));
+        // PlasmaCube : garde-fou anti-OOM. Si on alloue trop de RAM a Minecraft, Android
+        // tue le processus du jeu pendant le chargement (lowmemorykiller). On plafonne
+        // l'allocation (y compris celle choisie au curseur) a la moitie de la RAM totale.
+        int storedAllocation = DEFAULT_PREF.getInt("allocation", findBestRAMAllocation(ctx));
+        int safeAllocationCap = Math.max(findBestRAMAllocation(ctx), Tools.getTotalDeviceMemory(ctx) / 2);
+        PREF_RAM_ALLOCATION = Math.min(storedAllocation, safeAllocationCap);
         PREF_CUSTOM_JAVA_ARGS = DEFAULT_PREF.getString("javaArgs", "");
         PREF_SUSTAINED_PERFORMANCE = DEFAULT_PREF.getBoolean("sustainedPerformance", isDevicePowerful);
         PREF_VIRTUAL_MOUSE_START = DEFAULT_PREF.getBoolean("mouse_start", false);
