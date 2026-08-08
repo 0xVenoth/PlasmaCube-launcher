@@ -1,0 +1,16 @@
+renderDistance:6
+simulationDistance:5
+graphicsMode:0
+ao:false
+maxFps:60
+enableVsync:false
+particles:1
+entityShadows:false
+cloudStatus:false
+guiScale:0
+fullscreen:true
+pauseOnLostFocus:false
+tutorialStep:none
+skipMultiplayerWarning:true
+joinedFirstServer:true
+lang:fr_fr

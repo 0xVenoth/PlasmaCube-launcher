@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "plasmacube": {
+      "name": "PlasmaCube",
+      "lastVersionId": "fabric-loader-0.19.3-1.21.1",
+      "icon": "Grass",
+      "type": "custom"
+    }
+  },
+  "selectedProfile": "plasmacube"
+}
