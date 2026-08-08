@@ -160,7 +160,8 @@ public class LauncherPreferences {
     private static int findBestResolution(Context context, boolean isDevicePowerful) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int minSide = Math.min(metrics.widthPixels, metrics.heightPixels);
-        int targetSide = isDevicePowerful ? 1080 : 720;
+        // Cibles abaissees pour PlasmaCube : le modpack est bien plus lourd que le vanilla
+        int targetSide = isDevicePowerful ? 810 : 540;
         if (minSide <= targetSide) return 100; // No need to scale down
 
         float ratio = (100f * targetSide / minSide);
