@@ -28,9 +28,9 @@ import java.util.zip.ZipFile;
 public final class PlasmaCubeInstaller {
     private static final String TAG = "PlasmaCubeInstaller";
 
-    public static final String PACK_VERSION = "2.0";
+    public static final String PACK_VERSION = "2.1";
     public static final String PACK_URL =
-            "https://github.com/0xVenoth/PlasmaCube-modpack/releases/download/v2.0/PlasmaCube-modpack-2.0.zip";
+            "https://github.com/0xVenoth/PlasmaCube-modpack/releases/download/v2.1/PlasmaCube-modpack-2.1.zip";
     public static final String PROFILE_NAME = "PlasmaCube";
     public static final String VERSION_ID = "fabric-loader-0.19.3-1.21.1";
 
