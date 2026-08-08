@@ -34,7 +34,7 @@ public final class PlasmaCubeInstaller {
     public static final String PROFILE_NAME = "PlasmaCube";
     public static final String VERSION_ID = "fabric-loader-0.19.3-1.21.1";
     /** Incrementer pour re-pousser assets/default.json (controles tactiles) chez les joueurs existants. */
-    public static final String LAYOUT_VERSION = "2";
+    public static final String LAYOUT_VERSION = "3";
 
     private static final AtomicBoolean sRunning = new AtomicBoolean(false);
 
