@@ -229,7 +229,7 @@ public class LauncherActivity extends BaseActivity {
         mProgressLayout.observe(ProgressLayout.AUTHENTICATE_MICROSOFT);
         mProgressLayout.observe(ProgressLayout.DOWNLOAD_VERSION_LIST);
 
-        PlasmaCubeInstaller.installIfNeeded();
+        PlasmaCubeInstaller.installIfNeeded(this);
     }
 
     @Override

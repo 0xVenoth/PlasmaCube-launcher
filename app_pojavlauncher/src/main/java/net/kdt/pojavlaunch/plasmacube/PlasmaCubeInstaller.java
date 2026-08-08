@@ -33,13 +33,16 @@ public final class PlasmaCubeInstaller {
             "https://github.com/0xVenoth/PlasmaCube-modpack/releases/download/v2.2/PlasmaCube-modpack-2.2.zip";
     public static final String PROFILE_NAME = "PlasmaCube";
     public static final String VERSION_ID = "fabric-loader-0.19.3-1.21.1";
+    /** Incrementer pour re-pousser assets/default.json (controles tactiles) chez les joueurs existants. */
+    public static final String LAYOUT_VERSION = "2";
 
     private static final AtomicBoolean sRunning = new AtomicBoolean(false);
 
     private PlasmaCubeInstaller() {}
 
     /** A appeler une fois le stockage initialise (LauncherActivity.onCreate). */
-    public static void installIfNeeded() {
+    public static void installIfNeeded(android.content.Context context) {
+        ensureLayout(context);
         if (!sRunning.compareAndSet(false, true)) return;
         File marker = new File(Tools.DIR_GAME_NEW, "plasmacube_pack_version");
         String installed = null;
@@ -86,6 +89,25 @@ public final class PlasmaCubeInstaller {
                 sRunning.set(false);
             }
         });
+    }
+
+    /** Remplace le layout de controles par defaut quand LAYOUT_VERSION change. */
+    private static void ensureLayout(android.content.Context context) {
+        File marker = new File(Tools.DIR_GAME_NEW, "plasmacube_layout_version");
+        String installed = null;
+        if (marker.canRead()) {
+            try {
+                installed = Tools.read(marker).trim();
+            } catch (IOException ignored) {}
+        }
+        if (LAYOUT_VERSION.equals(installed)) return;
+        try {
+            Tools.copyAssetFile(context, "default.json", Tools.CTRLMAP_PATH, true);
+            Tools.write(marker.getAbsolutePath(), LAYOUT_VERSION);
+            Log.i(TAG, "Layout de controles mis a jour (v" + LAYOUT_VERSION + ")");
+        } catch (IOException e) {
+            Log.e(TAG, "Echec de la mise a jour du layout", e);
+        }
     }
 
     /** Garantit l'existence du profil PlasmaCube et le selectionne. */
