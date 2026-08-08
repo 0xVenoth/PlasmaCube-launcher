@@ -124,8 +124,8 @@ android {
         applicationId "fr.plasmacube.launcher"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 172014
-        versionName "1.9-PlasmaCube"
+        versionCode 172015
+        versionName "1.10-PlasmaCube"
         multiDexEnabled true //important
         resValue 'string', 'curseforge_api_key', getCFApiKey()
     }

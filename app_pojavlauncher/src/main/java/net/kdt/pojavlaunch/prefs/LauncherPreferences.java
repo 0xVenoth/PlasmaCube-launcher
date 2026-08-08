@@ -154,8 +154,13 @@ public class LauncherPreferences {
 
         if (deviceRam < 3064) return 936;
         if (deviceRam < 4096) return 1144;
-        if (deviceRam < 6144) return 1536;
-        return 2048; //Default RAM allocation for 64 bits
+        // PlasmaCube : le modpack (111 mods) profite d'un tas Java plus grand que le
+        // defaut Pojav, mais toujours borne pour laisser de la place au natif + Android.
+        // Seuils cales sur la RAM *declaree* (toujours ~10% sous la valeur nominale).
+        if (deviceRam < 5400) return 1536;   // telephones ~4-5 Go
+        if (deviceRam < 7680) return 2560;   // telephones ~6 Go
+        if (deviceRam < 11264) return 3072;  // telephones ~8 Go
+        return 4096;                         // telephones ~12 Go et plus
     }
 
     /// Find a correct resolution for the device
