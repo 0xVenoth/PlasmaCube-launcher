@@ -67,6 +67,7 @@ public class AsyncAssetManager {
                 Tools.copyAssetFile(ctx, "default.json", Tools.CTRLMAP_PATH, false);
 
                 Tools.copyAssetFile(ctx, "launcher_profiles.json", Tools.DIR_GAME_NEW, false);
+                Tools.copyAssetFile(ctx, "servers.dat", Tools.DIR_GAME_NEW, false);
                 Tools.copyAssetFile(ctx,"resolv.conf",Tools.DIR_DATA, false);
             } catch (IOException e) {
                 Log.e("AsyncAssetManager", "Failed to unpack critical components !");
