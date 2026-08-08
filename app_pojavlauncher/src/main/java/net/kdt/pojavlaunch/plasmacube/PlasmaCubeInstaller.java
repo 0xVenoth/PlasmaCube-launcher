@@ -28,9 +28,9 @@ import java.util.zip.ZipFile;
 public final class PlasmaCubeInstaller {
     private static final String TAG = "PlasmaCubeInstaller";
 
-    public static final String PACK_VERSION = "1.0";
+    public static final String PACK_VERSION = "2.0";
     public static final String PACK_URL =
-            "https://github.com/0xVenoth/PlasmaCube-modpack/releases/download/v1.0/PlasmaCube-modpack-1.0.zip";
+            "https://github.com/0xVenoth/PlasmaCube-modpack/releases/download/v2.0/PlasmaCube-modpack-2.0.zip";
     public static final String PROFILE_NAME = "PlasmaCube";
     public static final String VERSION_ID = "fabric-loader-0.19.3-1.21.1";
 
@@ -62,6 +62,15 @@ public final class PlasmaCubeInstaller {
                                 ProgressLayout.INSTALL_MODPACK));
                 ProgressLayout.setProgress(ProgressLayout.INSTALL_MODPACK, 0, R.string.plasmacube_extracting);
                 File gameDir = new File(Tools.DIR_GAME_NEW);
+                // Purge l'ancien dossier mods : deux versions d'un meme mod = crash au demarrage
+                File modsDir = new File(gameDir, "mods");
+                File[] oldMods = modsDir.listFiles();
+                if (oldMods != null) {
+                    for (File oldMod : oldMods) {
+                        //noinspection ResultOfMethodCallIgnored
+                        oldMod.delete();
+                    }
+                }
                 try (ZipFile zipFile = new ZipFile(packZip)) {
                     ZipUtils.zipExtract(zipFile, "", gameDir);
                 }
